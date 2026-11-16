@@ -103,7 +103,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .hero-intro { font-size: clamp(1.25rem, 2vw, 1.65rem); line-height: 1.35; font-weight: 500; max-width: 34ch; letter-spacing: -0.01em; }
 .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: flex-end; }
 .hero-facts {
-  grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px;
+  grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; text-align: center;
   padding-top: 22px; border-top: 1.5px solid rgba(238, 240, 255, 0.3); font-size: 15.5px; font-weight: 500;
 }
 .hero-facts span { display: block; color: var(--ink-soft); font-weight: 400; font-size: 14px; margin-bottom: 2px; }
@@ -280,7 +280,6 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 @media (max-width: 1100px) {
   .panel-wide .panel-body { grid-template-columns: 1fr 1fr; }
   .panel-wide .panel-summary { grid-column: 1 / -1; }
-  .hero-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 860px) {
   .hero-foot { grid-template-columns: 1fr; }
@@ -305,7 +304,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .hero { padding-top: 96px; min-height: auto; gap: 40px; }
   .hero-name { font-size: 31vw; }
   .hero-actions .btn { flex: 1 1 auto; justify-content: center; }
-  .hero-facts { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .hero-facts { grid-template-columns: 1fr; gap: 16px; }
   .panel-wide .panel-body { grid-template-columns: 1fr; gap: 28px; }
   .panel-wide .panel-visual { margin-left: calc(-1 * clamp(28px, 5vw, 72px)); margin-right: calc(-1 * clamp(28px, 5vw, 72px)); overflow-x: auto; padding: 0 clamp(28px, 5vw, 72px); scrollbar-width: none; }
   .panel-wide .chart { min-width: 680px; }
