@@ -326,7 +326,7 @@ body::after {
 
 /* Ticker tape of the stack */
 .ticker {
-  position: relative; overflow: hidden; padding: 14px 0;
+  position: relative; overflow: hidden; padding: 16px 0; margin: clamp(8px, 2vw, 24px) 0 clamp(48px, 6vw, 80px);
   border-block: 1px solid rgba(238, 240, 255, 0.14);
   background: rgba(255, 255, 255, 0.02);
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
@@ -337,7 +337,6 @@ body::after {
 .ticker-row { display: flex; }
 .tk { display: inline-flex; align-items: center; gap: 10px; padding: 0 26px; font-size: 15px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; color: var(--ink); }
 .tk-up { color: var(--green); font-size: 11px; }
-.tk-dn { color: var(--coral); font-size: 11px; }
 @keyframes tape { to { transform: translateX(-50%); } }
 
 /* Project names slide up out of a mask */
@@ -446,7 +445,7 @@ body::after {
 .hero-cue i { width: 14px; height: 14px; border-radius: 50%; background: #fff; box-shadow: 0 0 10px var(--line), 0 0 22px var(--line); animation: beat 2s var(--ease) infinite; }
 @keyframes beat { 50% { transform: scale(0.7); } }
 
-.about { padding-left: 0; padding-right: var(--gutter); }
+.about { padding-left: calc(var(--gutter) - clamp(10px, 1.6vw, 24px)); padding-right: var(--gutter); }
 .contact { margin-left: 0; }
 
 @media (max-width: 640px) {

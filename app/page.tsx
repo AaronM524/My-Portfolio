@@ -25,7 +25,7 @@ function Ticker() {
   const row = items.map((t, i) => (
     <span key={i} className="tk">
       <span className="tk-name">{t}</span>
-      <span className={i % 5 === 3 ? "tk-dn" : "tk-up"}>{i % 5 === 3 ? "▼" : "▲"}</span>
+      <span className="tk-up">▲</span>
     </span>
   ));
   return (
@@ -68,7 +68,7 @@ function Panel({ p, wide }: { p: Project; wide?: boolean }) {
   return (
     <article className={`panel t-${p.theme} ${wide ? "panel-wide" : "panel-split"}`} id={p.slug} data-watch data-node>
       <header className="panel-head">
-        <h3 className="panel-name"><span className="mask"><span className="mask-in">{p.name}</span></span></h3>
+        <h3 className="panel-name" data-anchor><span className="mask"><span className="mask-in">{p.name}</span></span></h3>
         <div className="panel-meta">
           <p className="panel-kind">{p.kind}</p>
           <p className="panel-date">
@@ -159,7 +159,7 @@ export default function Home() {
           {more.length > 0 && (
             <div className="more" data-node>
               <div className="more-head" data-reveal>
-                <h3>Earlier work</h3>
+                <h3 data-anchor>Earlier work</h3>
                 <p>Smaller sites I built before Stevens, mostly in HTML, CSS, JavaScript and Vue.</p>
               </div>
               <ul>
@@ -188,7 +188,7 @@ export default function Home() {
         <section className="about" id="about" data-node>
           <div className="about-main">
             <h2 className="sr-only">About</h2>
-            <p className="about-statement" data-reveal>{about.statement}</p>
+            <p className="about-statement" data-reveal data-anchor>{about.statement}</p>
             {about.body.map((b, i) => <p key={b} className="about-body" data-reveal style={{ ["--rd" as string]: `${(i + 1) * 100}ms` }}>{b}</p>)}
           </div>
 
@@ -209,7 +209,7 @@ export default function Home() {
 
         {/* Contact */}
         <section className="contact" id="contact" data-node>
-          <h2 data-reveal>Want to talk? Email me.</h2>
+          <h2 data-reveal data-anchor>Want to talk? Email me.</h2>
           <a className="contact-email" href={`mailto:${site.email}`}>{site.email}</a>
           <div className="contact-actions" data-reveal style={{ ["--rd" as string]: "160ms" }}>
             <button className="btn btn-invert" type="button" data-copy={site.email}>

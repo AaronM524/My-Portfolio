@@ -45,6 +45,8 @@
     d.body.appendChild(rail);
     var pts=[], cum=[], total=0, nodes=[], trackTop=0;
 
+    function docTop(e){ var y=0; while(e){ y+=e.offsetTop; e=e.offsetParent } return y }
+
     function rng(seed){ return function(){ seed=(seed*16807)%2147483647; return (seed-1)/2147483646 } }
 
     function build(){
@@ -53,8 +55,14 @@
       rail.style.top=trackTop+'px'; rail.style.left=(sr.left+scrollX)+'px';
       rail.style.width=W+'px'; rail.style.height=H+'px';
       rail.setAttribute('viewBox','0 0 '+W+' '+H);
+      // Each node lines up with the first line of its section's headline ([data-anchor]).
+      // offsetTop is used so reveal transforms (still mid-animation) don't shift the measurement.
+      var trackDocTop=docTop(track);
       var anchors=[].slice.call(track.querySelectorAll('[data-node]')).map(function(el){
-        return { y: el.getBoundingClientRect().top+scrollY-trackTop+Math.min(56, el.offsetHeight*0.2), el: el };
+        var a=el.querySelector('[data-anchor]'), y;
+        if(a){ var lh=parseFloat(getComputedStyle(a).lineHeight)||a.offsetHeight; y=docTop(a)-trackDocTop+Math.min(lh, a.offsetHeight)/2 }
+        else { y=docTop(el)-trackDocTop+Math.min(56, el.offsetHeight*0.2) }
+        return { y: y, el: el };
       });
       pts=[]; nodes=[]; nodeG.textContent='';
       var x=W*0.3, y=7, step=W<40?12:18, ai=0, home=W*0.3, v=0;
