@@ -95,6 +95,18 @@
     function draw(){
       if(!pts.length) return;
       var tipY = reduce ? Infinity : scrollY+innerHeight*0.6-trackTop;
+      // The tip follows 60% down the viewport, which can't reach the end of the track once the
+      // page runs out of scroll. Over the last screen of scrolling, ease in the missing distance
+      // so the line finishes exactly at the bottom of the page.
+      if(!reduce){
+        var H=pts[pts.length-1][1], maxScroll=Math.max(0, d.documentElement.scrollHeight-innerHeight);
+        var short=H-(maxScroll+innerHeight*0.6-trackTop);
+        if(short>0){
+          var t=Math.min(1, Math.max(0, (scrollY-(maxScroll-innerHeight))/innerHeight));
+          tipY+=short*t*t*(3-2*t);
+          if(scrollY>=maxScroll-1) tipY=Infinity;
+        }
+      }
       // find the segment containing tipY (y is non-decreasing along the path)
       var lo=0, hi=pts.length-1;
       if(tipY<=0){ hi=0 } else if(tipY>=pts[hi][1]){ lo=hi }
