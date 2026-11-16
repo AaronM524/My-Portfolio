@@ -30,6 +30,22 @@ function ProjectLinks({ p }: { p: Project }) {
   );
 }
 
+function Screenshot({ p }: { p: Project }) {
+  const host = p.live ? new URL(p.live).host : "";
+  const frame = (
+    <figure className="shot">
+      <div className="shot-bar" aria-hidden>
+        <i /><i /><i />
+        {host && <span className="shot-url">{host}</span>}
+      </div>
+      <img src={p.image} alt={`${p.name} home page`} width={1440} height={900} decoding="async" />
+    </figure>
+  );
+  return p.live
+    ? <a className="shot-link" href={p.live} target="_blank" rel="noreferrer" aria-label={`Open ${p.name} (live site)`}>{frame}</a>
+    : frame;
+}
+
 function Panel({ p, wide }: { p: Project; wide?: boolean }) {
   return (
     <article className={`panel t-${p.theme} ${wide ? "panel-wide" : "panel-split"}`} id={p.slug} data-watch data-node>
@@ -44,8 +60,8 @@ function Panel({ p, wide }: { p: Project; wide?: boolean }) {
         </div>
       </header>
 
-      <div className="panel-visual">
-        <ProjectVisual type={p.visual} />
+      <div className={`panel-visual${p.image ? " panel-shot" : ""}`}>
+        {p.image ? <Screenshot p={p} /> : <ProjectVisual type={p.visual} />}
       </div>
 
       <div className="panel-body">

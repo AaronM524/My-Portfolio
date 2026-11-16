@@ -3,6 +3,7 @@
 // featured: false -> row in "More projects" (that list appears once one exists)
 // repo / live: leave as "" to hide the button.
 // theme: which color world the panel uses (see .t-* classes in globals.css).
+// image: a screenshot in public/ (shown in a browser frame instead of the illustration).
 
 export type Visual = "chart" | "budget" | "bubbles" | "none";
 export type Theme = "navy" | "mint" | "pencil" | "cobalt" | "paper";
@@ -21,6 +22,7 @@ export type Project = {
   stack: string[];
   repo: string;
   live: string;
+  image?: string;
   visual: Visual;
   theme: Theme;
 };
@@ -45,7 +47,8 @@ export const projects: Project[] = [
       "Yahoo Finance and Finnhub requests run concurrently with per-call timeouts, so multi-ticker scans finish inside serverless execution limits.",
     stack: ["Next.js", "TypeScript", "Supabase", "SWR", "Llama 3.1", "Finnhub", "Yahoo Finance"],
     repo: "",
-    live: "",
+    live: "https://tradesignal-orcin.vercel.app/",
+    image: "/projects/tradesignal.webp",
     visual: "chart",
     theme: "navy",
   },
@@ -65,7 +68,8 @@ export const projects: Project[] = [
     ],
     stack: ["Next.js", "TypeScript", "React", "SQL", "CSS"],
     repo: "",
-    live: "",
+    live: "https://budgexia.vercel.app/",
+    image: "/projects/budgexia.webp",
     visual: "budget",
     theme: "mint",
   },
