@@ -17,7 +17,6 @@ export const site = {
   // Hero
   intro:
     "Computer Science Student at Stevens Institute of Technology",
-  status: "Looking for software engineering internships",
 };
 
 export const about = {

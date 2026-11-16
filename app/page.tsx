@@ -102,7 +102,6 @@ export default function Home() {
               <li><span>Studying</span>{education.degree}, {education.school}</li>
               <li><span>Graduating</span>{education.graduation}</li>
               <li><span>Based in</span>{site.location}</li>
-              <li><span>Status</span>{site.status}</li>
             </ul>
           </div>
 
