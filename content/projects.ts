@@ -31,7 +31,7 @@ export const projects: Project[] = [
   {
     slug: "tradesignal",
     name: "TradeSignal",
-    kind: "AI-powered stock signal platform",
+    kind: "AI-Powered Stock Signal Platform",
     date: "Aug 2026",
     category: "Personal",
     featured: true,
@@ -55,7 +55,7 @@ export const projects: Project[] = [
   {
     slug: "budgexia",
     name: "Budgexia",
-    kind: "Personal budgeting platform",
+    kind: "Personal Budgeting Platform",
     date: "Jan 2026",
     category: "Personal",
     featured: true,
@@ -76,7 +76,7 @@ export const projects: Project[] = [
   {
     slug: "prepai",
     name: "PrepAI",
-    kind: "SAT preparation web app",
+    kind: "SAT Preparation Web App",
     date: "Dec 2025",
     category: "Personal",
     featured: true,
