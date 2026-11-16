@@ -210,7 +210,7 @@ export default function Home() {
         {/* Contact */}
         <section className="contact" id="contact" data-node>
           <h2 data-reveal data-anchor>Want to talk? Email me.</h2>
-          <a className="contact-email" href={`mailto:${site.email}`}>{site.email}</a>
+          <a className="contact-email" href={`mailto:${site.email}`}>{site.email.split("@")[0]}<wbr />@{site.email.split("@")[1]}</a>
           <div className="contact-actions" data-reveal style={{ ["--rd" as string]: "160ms" }}>
             <button className="btn btn-invert" type="button" data-copy={site.email}>
               <CopyIcon size={16} /> <span data-copy-label>Copy email</span>
