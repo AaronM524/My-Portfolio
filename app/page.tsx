@@ -1,4 +1,4 @@
-import { site, about, education, experience } from "@/content/site";
+import { site, about, education } from "@/content/site";
 import { projects, type Project } from "@/content/projects";
 import { skills } from "@/content/skills";
 import ProjectVisual from "@/components/ProjectVisual";
@@ -168,23 +168,6 @@ export default function Home() {
                   </div>
                 ))}
               </dl>
-            </div>
-
-            <div className="about-block">
-              <h3>Education</h3>
-              <p className="about-strong">{education.school}</p>
-              <p>{education.degree}, expected {education.graduation}</p>
-              <p className="about-soft">Coursework in {education.coursework.slice(0, -1).join(", ")} and {education.coursework.slice(-1)}.</p>
-
-              <h3 className="about-h-gap">Experience</h3>
-              {experience.map((e) => (
-                <div key={e.role}>
-                  <p className="about-strong">{e.role}</p>
-                  <p>{e.org}, {e.place}</p>
-                  <p className="about-soft">{e.dates}</p>
-                  <p className="about-soft about-sum">{e.summary}</p>
-                </div>
-              ))}
             </div>
           </div>
         </section>

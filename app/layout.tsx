@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { site } from "@/content/site";
-import { enhanceScript, initScript } from "@/components/scripts";
+import Script from "next/script";
+import { initScript } from "@/components/scripts";
 import "@fontsource-variable/bricolage-grotesque/standard.css";
 import "./globals.css";
 
@@ -38,7 +39,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         {children}
-        <script dangerouslySetInnerHTML={{ __html: enhanceScript }} />
+        <Script src="/enhance.js" strategy="afterInteractive" />
       </body>
     </html>
   );

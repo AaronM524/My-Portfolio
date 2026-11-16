@@ -16,7 +16,7 @@ export const site = {
 
   // Hero
   intro:
-    "Computer science student at Stevens Institute of Technology. I build full-stack web apps in Next.js and TypeScript, from the data pipeline to the last pixel of the interface.",
+    "Computer Science Student at Stevens Institute of Technology",
   status: "Looking for software engineering internships",
 };
 
@@ -42,14 +42,3 @@ export const education = {
     "Introduction to Computer Science",
   ],
 };
-
-export const experience = [
-  {
-    role: "Assistant to Activities Director",
-    org: "Mira Vie Nursing Home",
-    place: "Manalapan, NJ",
-    dates: "Oct 2023 – Jun 2025",
-    summary:
-      "Ran group activities and one-on-one support for residents with varying mobility and cognitive needs, and coordinated event setup with staff.",
-  },
-];
