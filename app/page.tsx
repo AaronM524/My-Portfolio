@@ -20,6 +20,24 @@ function Letters({ text, offset = 0 }: { text: string; offset?: number }) {
   );
 }
 
+function Ticker() {
+  const items = skills.flatMap((g) => g.items);
+  const row = items.map((t, i) => (
+    <span key={i} className="tk">
+      <span className="tk-name">{t}</span>
+      <span className={i % 5 === 3 ? "tk-dn" : "tk-up"}>{i % 5 === 3 ? "▼" : "▲"}</span>
+    </span>
+  ));
+  return (
+    <div className="ticker" aria-hidden>
+      <div className="ticker-track">
+        <div className="ticker-row">{row}</div>
+        <div className="ticker-row">{row}</div>
+      </div>
+    </div>
+  );
+}
+
 function ProjectLinks({ p }: { p: Project }) {
   if (!p.repo && !p.live) return null;
   return (
@@ -50,7 +68,7 @@ function Panel({ p, wide }: { p: Project; wide?: boolean }) {
   return (
     <article className={`panel t-${p.theme} ${wide ? "panel-wide" : "panel-split"}`} id={p.slug} data-watch data-node>
       <header className="panel-head">
-        <h3 className="panel-name">{p.name}</h3>
+        <h3 className="panel-name"><span className="mask"><span className="mask-in">{p.name}</span></span></h3>
         <div className="panel-meta">
           <p className="panel-kind">{p.kind}</p>
           <p className="panel-date">
@@ -111,8 +129,8 @@ export default function Home() {
           <div className="hero-foot">
             <p className="hero-intro">{site.intro}</p>
             <div className="hero-actions">
-              <a className="btn btn-solid btn-big" href="#work">See my projects</a>
-              <a className="btn btn-big" href={site.resume} target="_blank" rel="noreferrer">Resume (PDF)</a>
+              <a className="btn btn-solid btn-big" href="#work" data-magnet>See my projects</a>
+              <a className="btn btn-big" data-magnet href={site.resume} target="_blank" rel="noreferrer">Resume (PDF)</a>
             </div>
             <ul className="hero-facts">
               <li><span>Studying</span>{education.degree}, {education.school}</li>
@@ -123,6 +141,8 @@ export default function Home() {
 
         </section>
 
+        <Ticker />
+
         <div className="track" data-track>
         <div className="rail" aria-hidden data-rail />
         <p className="track-cue" aria-hidden><i />Scroll to follow the signal</p>
@@ -130,15 +150,15 @@ export default function Home() {
         {/* Work */}
         <section className="work" id="work">
           <div className="work-intro">
-            <h2>Things I&apos;ve built</h2>
-            <p>Three full-stack apps, each designed and built on my own, plus the smaller sites that got me started.</p>
+            <h2 data-reveal>Things I&apos;ve built</h2>
+            <p data-reveal style={{ ["--rd" as string]: "120ms" }}>Three full-stack apps, each designed and built on my own, plus the smaller sites that got me started.</p>
           </div>
 
           {featured.map((p, i) => <Panel key={p.slug} p={p} wide={i === 0} />)}
 
           {more.length > 0 && (
             <div className="more" data-node>
-              <div className="more-head">
+              <div className="more-head" data-reveal>
                 <h3>Earlier work</h3>
                 <p>Smaller sites I built before Stevens, mostly in HTML, CSS, JavaScript and Vue.</p>
               </div>
@@ -168,12 +188,12 @@ export default function Home() {
         <section className="about" id="about" data-node>
           <div className="about-main">
             <h2 className="sr-only">About</h2>
-            <p className="about-statement">{about.statement}</p>
-            {about.body.map((b) => <p key={b} className="about-body">{b}</p>)}
+            <p className="about-statement" data-reveal>{about.statement}</p>
+            {about.body.map((b, i) => <p key={b} className="about-body" data-reveal style={{ ["--rd" as string]: `${(i + 1) * 100}ms` }}>{b}</p>)}
           </div>
 
           <div className="about-cols">
-            <div className="about-block">
+            <div className="about-block" data-reveal>
               <h3>Tools I build with</h3>
               <dl className="skills">
                 {skills.map((g) => (
@@ -189,9 +209,9 @@ export default function Home() {
 
         {/* Contact */}
         <section className="contact" id="contact" data-node>
-          <h2>Want to talk? Email me.</h2>
+          <h2 data-reveal>Want to talk? Email me.</h2>
           <a className="contact-email" href={`mailto:${site.email}`}>{site.email}</a>
-          <div className="contact-actions">
+          <div className="contact-actions" data-reveal style={{ ["--rd" as string]: "160ms" }}>
             <button className="btn btn-invert" type="button" data-copy={site.email}>
               <CopyIcon size={16} /> <span data-copy-label>Copy email</span>
             </button>

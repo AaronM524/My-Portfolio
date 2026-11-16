@@ -55,7 +55,9 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   transition: background-color 0.2s, color 0.2s, transform 0.2s var(--ease);
 }
 .btn:hover { background: var(--fg); color: var(--bg); }
-.btn:active { transform: scale(0.97); }
+.btn { transform: translate(var(--bx, 0px), var(--by, 0px)); }
+.btn:active { transform: translate(var(--bx, 0px), var(--by, 0px)) scale(0.97); }
+[data-magnet] { transition: background-color 0.2s, color 0.2s, transform 0.35s var(--ease); }
 .btn-solid { background: var(--fg); color: var(--bg); border-color: var(--fg); }
 .btn-solid:hover { background: transparent; color: var(--fg); }
 .btn-big { height: 56px; padding: 0 28px; font-size: 17px; }
@@ -67,6 +69,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   transition: background-color 0.25s, box-shadow 0.25s;
 }
 .nav.scrolled, .nav.open { background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08); }
+.nav::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: linear-gradient(90deg, var(--line), var(--green)); transform: scaleX(var(--progress, 0)); transform-origin: left; opacity: 0.9; pointer-events: none; }
 .nav-name { font-weight: 700; font-size: 18px; letter-spacing: -0.01em; text-decoration: none; }
 .nav nav { margin-left: auto; }
 .nav-links { display: flex; align-items: center; gap: 6px; }
@@ -295,6 +298,86 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .js .hero-name:not(.ready) .ltr { --w: 800; --x: 75; }
 }
 
+
+/* ── Effects ─────────────────────────────────────────────── */
+
+/* Film grain over everything */
+body::after {
+  content: ""; position: fixed; inset: 0; z-index: 90; pointer-events: none; opacity: 0.07; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Hero aurora: slow light drifting behind the name */
+.hero { position: relative; isolation: isolate; overflow-x: clip; }
+.hero::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(38% 34% at 18% 32%, rgba(42, 61, 255, 0.42), transparent 70%),
+    radial-gradient(34% 30% at 82% 58%, rgba(117, 132, 255, 0.30), transparent 70%),
+    radial-gradient(26% 22% at 58% 12%, rgba(43, 217, 140, 0.14), transparent 70%);
+  filter: blur(48px);
+  animation: aurora 22s ease-in-out infinite alternate;
+}
+@keyframes aurora {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  50%  { transform: translate3d(4%, -3%, 0) scale(1.08); }
+  100% { transform: translate3d(-4%, 3%, 0) scale(1.02); }
+}
+
+/* Ticker tape of the stack */
+.ticker {
+  position: relative; overflow: hidden; padding: 14px 0;
+  border-block: 1px solid rgba(238, 240, 255, 0.14);
+  background: rgba(255, 255, 255, 0.02);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.ticker-track { display: flex; width: max-content; animation: tape 48s linear infinite; }
+.ticker:hover .ticker-track { animation-play-state: paused; }
+.ticker-row { display: flex; }
+.tk { display: inline-flex; align-items: center; gap: 10px; padding: 0 26px; font-size: 15px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; color: var(--ink); }
+.tk-up { color: var(--green); font-size: 11px; }
+.tk-dn { color: var(--coral); font-size: 11px; }
+@keyframes tape { to { transform: translateX(-50%); } }
+
+/* Project names slide up out of a mask */
+.mask { display: block; overflow: hidden; padding: 0.06em 0 0.14em; margin: -0.06em 0 -0.14em; }
+.mask-in { display: inline-block; }
+.js .mask-in { transform: translateY(110%) rotate(2deg); transition: transform 1s var(--ease); }
+.js .seen .mask-in { transform: none; }
+
+/* Fade-up reveals */
+.js [data-reveal] { opacity: 0; transform: translateY(28px); transition: opacity 0.9s var(--ease) var(--rd, 0s), transform 0.9s var(--ease) var(--rd, 0s); }
+.js [data-reveal].is-in { opacity: 1; transform: none; }
+
+/* Spotlight that follows the pointer across a project panel */
+.panel::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: inherit; z-index: 0;
+  background: radial-gradient(520px circle at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, 0.16), transparent 45%);
+  mix-blend-mode: soft-light; opacity: 0; transition: opacity 0.4s;
+}
+.panel:hover::before { opacity: 1; }
+
+/* 3D tilt + glare on screenshots */
+.shot-link { position: relative; transform: perspective(1400px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform 0.6s var(--ease); will-change: transform; }
+.shot-link.tilting { transition: transform 0.12s linear; }
+.shot-link::after {
+  content: ""; position: absolute; inset: 0; border-radius: 14px; pointer-events: none;
+  background: radial-gradient(600px circle at var(--gx, 50%) var(--gy, 0%), rgba(255, 255, 255, 0.14), transparent 40%);
+  opacity: 0; transition: opacity 0.4s;
+}
+.shot-link:hover::after { opacity: 1; }
+
+/* Earlier-work rows nudge on hover */
+.more-row h4 { transition: transform 0.35s var(--ease), color 0.2s; }
+.more-row:hover h4 { transform: translateX(8px); color: var(--line); }
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track { animation: none; }
+  .js .mask-in, .js [data-reveal] { transform: none; opacity: 1; }
+  .shot-link { transform: none; }
+}
+
 /* ── Responsive ──────────────────────────────────────────── */
 @media (max-width: 1100px) {
   .panel-wide .panel-body { grid-template-columns: 1fr 1fr; }
@@ -314,6 +397,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 @media (max-width: 640px) {
   body { font-size: 16px; }
+  .tk { font-size: 13px; padding: 0 18px; }
+  .hero::before { filter: blur(32px); }
   .menu-btn { display: grid; }
   .nav nav { position: absolute; top: 64px; left: 0; right: 0; display: none; background: var(--paper); box-shadow: 0 12px 24px -12px rgba(0, 0, 0, 0.5); }
   .nav.open nav { display: block; }

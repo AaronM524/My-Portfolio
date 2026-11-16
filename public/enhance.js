@@ -1,4 +1,5 @@
-// Page interactions: hero letter wave, signal line, menu, nav highlight, copy email.
+// Page interactions: hero letter wave, signal line, menu, nav highlight, copy email,
+// plus the visual effects: reveals, scroll progress, panel spotlight, screenshot tilt, magnetic buttons.
 // Loaded by next/script after React hydrates, so it never conflicts with the server HTML.
 (function(){
   var d=document, reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -144,8 +145,12 @@
   d.querySelectorAll('.nav-links a').forEach(function(a){ a.addEventListener('click',closeMenu) });
   d.addEventListener('keydown',function(e){ if(e.key==='Escape') closeMenu() });
 
-  // Nav background once scrolled
-  function onScroll(){ nav.classList.toggle('scrolled', scrollY>10) }
+  // Nav background once scrolled, plus the progress line under it
+  function onScroll(){
+    nav.classList.toggle('scrolled', scrollY>10);
+    var max=d.documentElement.scrollHeight-innerHeight;
+    nav.style.setProperty('--progress', max>0 ? Math.min(1, scrollY/max).toFixed(4) : 0);
+  }
   onScroll(); addEventListener('scroll',onScroll,{passive:true});
 
   // Project visuals animate once, when their panel comes into view
@@ -178,4 +183,50 @@
       catch(e){ done('Select and copy above') }
     });
   });
+  // ── Visual effects ──
+  // Fade-up reveals for headings and paragraphs
+  var reveals=d.querySelectorAll('[data-reveal]');
+  if(reduce || !('IntersectionObserver' in window)){ reveals.forEach(function(r){ r.classList.add('is-in') }) }
+  else {
+    var ro=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('is-in'); ro.unobserve(e.target) } }) },{rootMargin:'0px 0px -12% 0px', threshold:0.1});
+    reveals.forEach(function(r){ ro.observe(r) });
+  }
+
+  // Pointer effects only where there's a real mouse
+  if(!reduce && matchMedia('(hover: hover) and (pointer: fine)').matches){
+    // Spotlight follows the pointer across each project panel
+    d.querySelectorAll('.panel').forEach(function(p){
+      p.addEventListener('pointermove',function(e){
+        var r=p.getBoundingClientRect();
+        p.style.setProperty('--mx',(e.clientX-r.left)+'px');
+        p.style.setProperty('--my',(e.clientY-r.top)+'px');
+      });
+    });
+
+    // Screenshots tilt toward the pointer, with a moving glare
+    d.querySelectorAll('.shot-link').forEach(function(a){
+      a.addEventListener('pointermove',function(e){
+        var r=a.getBoundingClientRect(), x=(e.clientX-r.left)/r.width, y=(e.clientY-r.top)/r.height;
+        a.classList.add('tilting');
+        a.style.setProperty('--ry',((x-0.5)*7).toFixed(2)+'deg');
+        a.style.setProperty('--rx',((0.5-y)*5).toFixed(2)+'deg');
+        a.style.setProperty('--gx',(x*100).toFixed(1)+'%');
+        a.style.setProperty('--gy',(y*100).toFixed(1)+'%');
+      });
+      a.addEventListener('pointerleave',function(){
+        a.classList.remove('tilting');
+        a.style.setProperty('--rx','0deg'); a.style.setProperty('--ry','0deg');
+      });
+    });
+
+    // Magnetic buttons lean toward the pointer
+    d.querySelectorAll('[data-magnet], .contact-actions .btn').forEach(function(b){
+      b.addEventListener('pointermove',function(e){
+        var r=b.getBoundingClientRect();
+        b.style.setProperty('--bx',((e.clientX-r.left-r.width/2)*0.25).toFixed(1)+'px');
+        b.style.setProperty('--by',((e.clientY-r.top-r.height/2)*0.35).toFixed(1)+'px');
+      });
+      b.addEventListener('pointerleave',function(){ b.style.setProperty('--bx','0px'); b.style.setProperty('--by','0px') });
+    });
+  }
 })();
