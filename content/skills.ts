@@ -1,19 +1,19 @@
-// Only list things you can talk about in an interview.
+// Mirrors the Technical Skills section of the résumé. Keep the two in sync.
 export const skills = [
   {
     group: "Languages",
-    items: ["TypeScript", "JavaScript", "Python", "Java", "C++", "SQL", "HTML", "CSS", "AArch64 Assembly"],
+    items: ["TypeScript", "JavaScript", "Python", "Java", "C++", "SQL", "HTML", "CSS"],
   },
   {
-    group: "Frontend",
-    items: ["React", "Next.js", "Vue", "SWR", "Responsive design", "Accessibility"],
+    group: "Frameworks/Libraries",
+    items: ["Next.js", "React", "Vue", "SWR"],
   },
   {
-    group: "Backend & data",
-    items: ["Supabase", "PostgreSQL", "REST APIs", "Auth & protected routes"],
+    group: "Technologies",
+    items: ["PostgreSQL", "REST APIs", "Supabase", "Vercel"],
   },
   {
-    group: "Tools & platforms",
-    items: ["Git", "GitHub", "Linux", "VS Code", "Vercel", "Figma"],
+    group: "Tools",
+    items: ["Git", "GitHub", "Linux", "VS Code", "Figma"],
   },
 ];

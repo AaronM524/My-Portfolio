@@ -253,7 +253,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .about-cols { display: grid; grid-template-columns: 1fr; gap: clamp(32px, 6vw, 96px); padding-top: 32px; border-top: 1.5px solid rgba(238, 240, 255, 0.3); }
 .about-block h3 { font-size: 22px; font-weight: 700; margin-bottom: 16px; }
 .skills { display: grid; gap: 14px; max-width: 900px; }
-.skills > div { display: grid; grid-template-columns: 150px 1fr; gap: 16px; }
+.skills > div { display: grid; grid-template-columns: 200px 1fr; gap: 16px; }
 .skills dt { font-weight: 700; }
 .skills dd { color: var(--ink-soft); }
 

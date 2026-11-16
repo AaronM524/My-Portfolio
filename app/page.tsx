@@ -194,7 +194,7 @@ export default function Home() {
 
           <div className="about-cols">
             <div className="about-block" data-reveal>
-              <h3>Tools I build with</h3>
+              <h3>Tools</h3>
               <dl className="skills">
                 {skills.map((g) => (
                   <div key={g.group}>
