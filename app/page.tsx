@@ -86,7 +86,7 @@ function Panel({ p, wide }: { p: Project; wide?: boolean }) {
         <p className="panel-summary">{p.summary}</p>
         <ul className="panel-points">
           {p.highlights.map((h) => <li key={h}>{h}</li>)}
-          {p.engineering && <li className="panel-eng"><b>The hard part:</b> {p.engineering}</li>}
+          {p.engineering && <li className="panel-eng"><b>Hardest part:</b> {p.engineering}</li>}
         </ul>
         <div className="panel-foot">
           <p className="panel-stack">{p.stack.join(", ")}</p>
@@ -164,7 +164,7 @@ export default function Home() {
         <section className="work" id="work">
           <div className="work-intro">
             <h2 data-reveal>Things I&apos;ve built</h2>
-            <p data-reveal style={{ ["--rd" as string]: "120ms" }}>Three full-stack apps, each designed and built on my own, plus the smaller sites that got me started.</p>
+            <p data-reveal style={{ ["--rd" as string]: "120ms" }}>Three apps I built from scratch, plus a few smaller sites from when I was starting out.</p>
           </div>
 
           {featured.map((p, i) => <Panel key={p.slug} p={p} wide={i === 0} />)}
