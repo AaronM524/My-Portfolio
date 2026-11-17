@@ -474,8 +474,11 @@ body::after {
 .contact { margin-left: 0; }
 
 @media (max-width: 640px) {
-  :root { --rail: 22px; --gutter: 14px; }
-  .track { padding-left: calc(var(--gutter) + var(--rail) + 6px); }
+  :root { --rail: 0px; --gutter: 20px; }
+  /* No journey line on phones: the cards get the full width */
+  .track { padding-left: clamp(10px, 1.6vw, 24px); }
+  .rail, .rail-svg, .track-cue { display: none; }
+  .nav::after { height: 3px; box-shadow: 0 0 12px rgba(117, 132, 255, 0.8); }
   .hero, .about { padding-left: 20px; padding-right: 20px; }
   .rail-line { stroke-width: 2; }
 }

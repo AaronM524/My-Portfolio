@@ -50,6 +50,7 @@
     function rng(seed){ return function(){ seed=(seed*16807)%2147483647; return (seed-1)/2147483646 } }
 
     function build(){
+      if(!slot.offsetWidth){ pts=[]; nodes=[]; nodeG.textContent=''; return } // hidden on phones
       var sr=slot.getBoundingClientRect(), W=sr.width, H=track.offsetHeight, r=rng(7);
       trackTop=track.getBoundingClientRect().top+scrollY;
       rail.style.top=trackTop+'px'; rail.style.left=(sr.left+scrollX)+'px';
