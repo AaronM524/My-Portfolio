@@ -96,6 +96,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   margin-left: -0.04em;
   user-select: none;
 }
+/* Laptop/desktop: the name fills the first screen; intro + buttons start below the fold */
+@media (min-width: 861px) and (min-aspect-ratio: 1/1) {
+  .hero-name { min-height: calc(100svh - 112px - 48px); display: flex; flex-direction: column; justify-content: center; }
+}
 .hero-line { display: block; white-space: nowrap; }
 .hero-line-2 { text-align: right; margin-right: -0.03em; }
 .ltr {
