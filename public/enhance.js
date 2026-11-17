@@ -134,7 +134,15 @@
       });
     }
 
-    var rt; function rebuild(){ clearTimeout(rt); rt=setTimeout(build,120) }
+    // iOS fires resize whenever the address bar shrinks or grows; only rebuild when the layout really changed
+    var lastW=innerWidth, lastH=track.offsetHeight, rt;
+    function rebuild(){
+      clearTimeout(rt);
+      rt=setTimeout(function(){
+        if(innerWidth===lastW && Math.abs(track.offsetHeight-lastH)<2) return;
+        lastW=innerWidth; lastH=track.offsetHeight; build();
+      },150);
+    }
     build();
     if(d.fonts && d.fonts.ready) d.fonts.ready.then(build);
     addEventListener('load',build);
