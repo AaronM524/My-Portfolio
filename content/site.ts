@@ -25,7 +25,7 @@ export const about = {
     "I'm studying computer science at Stevens. I mostly build web apps with Next.js and TypeScript, and I like working on every part of them, from the database to the design. In class I'm learning the stuff underneath, like data structures and algorithms.",
   ],
   // Shown as the "When I'm not coding" line. Keep it short.
-  interests: ["Gym", "Trading", "Gaming", "Music", "Hanging out with friends"],
+  interests: ["Gym", "Trading", "Gaming", "Music"],
 };
 
 export const education = {
