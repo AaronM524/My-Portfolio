@@ -59,6 +59,7 @@ export const projects: Project[] = [
     date: "Jan 2026",
     category: "Personal",
     featured: true,
+    status: "Live",
     summary:
       "A budgeting app where you set budgets, log what you spend and track your savings goals, all in one place.",
     highlights: [
