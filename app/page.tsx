@@ -141,6 +141,19 @@ export default function Home() {
 
         </section>
 
+        {/* About */}
+        <section className="about" id="about">
+          <h2 className="sr-only">About</h2>
+          <p className="about-statement" data-reveal>{about.statement}</p>
+          {about.body.map((b, i) => <p key={b} className="about-body" data-reveal style={{ ["--rd" as string]: `${(i + 1) * 100}ms` }}>{b}</p>)}
+          {about.interests.length > 0 && (
+            <div className="about-outside" data-reveal style={{ ["--rd" as string]: "200ms" }}>
+              <h3>When I&apos;m not coding</h3>
+              <ul>{about.interests.map((t) => <li key={t}>{t}</li>)}</ul>
+            </div>
+          )}
+        </section>
+
         <Ticker />
 
         <div className="track" data-track>
@@ -184,27 +197,17 @@ export default function Home() {
           </p>
         </section>
 
-        {/* About */}
-        <section className="about" id="about" data-node>
-          <div className="about-main">
-            <h2 className="sr-only">About</h2>
-            <p className="about-statement" data-reveal data-anchor>{about.statement}</p>
-            {about.body.map((b, i) => <p key={b} className="about-body" data-reveal style={{ ["--rd" as string]: `${(i + 1) * 100}ms` }}>{b}</p>)}
-          </div>
-
-          <div className="about-cols">
-            <div className="about-block" data-reveal>
-              <h3>Tools</h3>
-              <dl className="skills">
-                {skills.map((g) => (
-                  <div key={g.group}>
-                    <dt>{g.group}</dt>
-                    <dd>{g.items.join(", ")}</dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
-          </div>
+        {/* Tools */}
+        <section className="tools" id="tools" data-node>
+          <h2 data-reveal data-anchor>Tools</h2>
+          <dl className="skills" data-reveal style={{ ["--rd" as string]: "120ms" }}>
+            {skills.map((g) => (
+              <div key={g.group}>
+                <dt>{g.group}</dt>
+                <dd>{g.items.join(", ")}</dd>
+              </div>
+            ))}
+          </dl>
         </section>
 
         {/* Contact */}

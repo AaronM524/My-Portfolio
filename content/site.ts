@@ -20,12 +20,12 @@ export const site = {
 };
 
 export const about = {
-  statement:
-    "I learn by shipping. In under a year I took three apps from a blank repo to a working product, each one harder than the last.",
+  statement: "Hey, I'm Aaron.",
   body: [
-    "PrepAI taught me authentication and protected routes. Budgexia pushed me to build a real component library instead of one-off styles. TradeSignal meant wrangling live market data from two APIs fast enough to finish inside serverless time limits.",
-    "I started out building websites in high school, including a classroom site for a teacher and an event site for a trunk-or-treat. At Stevens I'm working through what sits underneath all of it: data structures, algorithms, and computer architecture down to AArch64 assembly.",
+    "I'm studying computer science at Stevens. I mostly build web apps with Next.js and TypeScript, and I like working on every part of them, from the database to the design. In class I'm learning the stuff underneath, like data structures and algorithms.",
   ],
+  // Shown as the "When I'm not coding" line. Keep it short.
+  interests: ["Gym", "Trading", "Gaming", "Music", "Hanging out with friends"],
 };
 
 export const education = {

@@ -246,12 +246,17 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .dots i.on { background: var(--ink-dark); }
 
 /* ── About ───────────────────────────────────────────────── */
-.about { padding: clamp(72px, 10vw, 140px) var(--gutter); display: grid; gap: clamp(48px, 7vw, 96px); }
-.about-main { display: grid; gap: 22px; max-width: 1100px; }
+.about { padding: clamp(56px, 8vw, 112px) var(--gutter) clamp(40px, 6vw, 72px); display: grid; gap: 22px; max-width: calc(1100px + 2 * var(--gutter)); }
 .about-statement { font-size: clamp(2rem, 4.6vw, 4.1rem); line-height: 1.02; font-weight: 700; font-stretch: 85%; max-width: 22ch; }
 .about-body { font-size: 19px; line-height: 1.6; color: var(--ink-soft); max-width: 60ch; }
-.about-cols { display: grid; grid-template-columns: 1fr; gap: clamp(32px, 6vw, 96px); padding-top: 32px; border-top: 1.5px solid rgba(238, 240, 255, 0.3); }
-.about-block h3 { font-size: 22px; font-weight: 700; margin-bottom: 16px; }
+.about-outside { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; margin-top: 8px; }
+.about-outside h3 { font-size: 15px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); margin-right: 4px; }
+.about-outside ul { display: flex; flex-wrap: wrap; gap: 8px; }
+.about-outside li { padding: 7px 14px; border-radius: 999px; border: 1.5px solid rgba(238, 240, 255, 0.22); font-size: 15.5px; font-weight: 600; transition: border-color 0.2s, background-color 0.2s; }
+.about-outside li:hover { border-color: var(--line); background: rgba(117, 132, 255, 0.12); }
+/* ── Tools ───────────────────────────────────────────────── */
+.tools { display: grid; gap: 28px; padding: clamp(72px, 10vw, 140px) var(--gutter) clamp(72px, 10vw, 140px) calc(var(--gutter) - clamp(10px, 1.6vw, 24px)); }
+.tools h2 { font-size: clamp(2rem, 4.4vw, 3.6rem); line-height: 0.95; font-weight: 800; font-stretch: 78%; letter-spacing: -0.03em; }
 .skills { display: grid; gap: 14px; max-width: 900px; }
 .skills > div { display: grid; grid-template-columns: 200px 1fr; gap: 16px; }
 .skills dt { font-weight: 700; }
@@ -388,7 +393,6 @@ body::after {
   .panel-split { grid-template-columns: 1fr; }
   .panel-split .panel-visual, .t-pencil.panel-split .panel-visual { grid-column: 1; grid-row: 2; margin-top: 28px; }
   .panel-split .panel-body, .t-pencil.panel-split .panel-body { grid-column: 1; grid-row: 3; margin-top: 28px; }
-  .about-cols { grid-template-columns: 1fr; }
   .panel-meta { text-align: left; padding-bottom: 0; }
   .panel-date { justify-content: flex-start; }
   .more-row { grid-template-columns: 1fr; gap: 6px; align-items: start; }
@@ -451,13 +455,12 @@ body::after {
 .hero-cue i { width: 14px; height: 14px; border-radius: 50%; background: #fff; box-shadow: 0 0 10px var(--line), 0 0 22px var(--line); animation: beat 2s var(--ease) infinite; }
 @keyframes beat { 50% { transform: scale(0.7); } }
 
-.about { padding-left: calc(var(--gutter) - clamp(10px, 1.6vw, 24px)); padding-right: var(--gutter); }
 .contact { margin-left: 0; }
 
 @media (max-width: 640px) {
   :root { --rail: 22px; --gutter: 14px; }
   .track { padding-left: calc(var(--gutter) + var(--rail) + 6px); }
-  .hero { padding-left: 20px; padding-right: 20px; }
+  .hero, .about { padding-left: 20px; padding-right: 20px; }
   .rail-line { stroke-width: 2; }
 }
 @media (prefers-reduced-motion: reduce) { .track-cue i { animation: none; } }
