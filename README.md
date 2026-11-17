@@ -24,7 +24,7 @@ npm run build      # static site written to /out
 1. Push this folder to a new GitHub repo (e.g. `AaronM524/portfolio`).
 2. Go to vercel.com → sign in with GitHub → **Add New → Project** → import the repo → **Deploy**. No settings to change.
 3. You get `https://<project>.vercel.app`. Every push to `main` redeploys automatically.
-4. Custom domain (recommended for your resume): buy e.g. `aaronmathew.dev` (Cloudflare, Porkbun or Namecheap), then Vercel → Project → **Settings → Domains** → add it and follow the DNS instructions.
+4. Custom domain (recommended for your resume): buy one (Cloudflare, Porkbun or Namecheap), then Vercel → Project → **Settings → Domains** → add it and follow the DNS instructions.
 5. Update `url` in `content/site.ts` to the final domain.
 
 ## Structure

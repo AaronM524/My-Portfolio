@@ -9,10 +9,10 @@ const description =
   "Aaron Mathew: Computer Science student at Stevens Institute of Technology building full-stack web apps with Next.js, TypeScript and Supabase.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(site.url),
+  ...(site.url && { metadataBase: new URL(site.url) }),
   title: `${site.name} | Software Engineer`,
   description,
-  openGraph: { title: `${site.name} | Software Engineer`, description, url: site.url, type: "website" },
+  openGraph: { title: `${site.name} | Software Engineer`, description, url: site.url || undefined, type: "website" },
   twitter: { card: "summary", title: site.name, description },
   icons: { icon: "/favicon.svg" },
 };
@@ -27,7 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     "@context": "https://schema.org",
     "@type": "Person",
     name: site.name,
-    url: site.url,
+    url: site.url || undefined,
     email: `mailto:${site.email}`,
     alumniOf: "Stevens Institute of Technology",
     sameAs: [site.links.github, site.links.linkedin].filter(Boolean),

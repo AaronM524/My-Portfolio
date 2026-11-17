@@ -5,7 +5,7 @@ export const site = {
   firstName: "Aaron",
   lastName: "Mathew",
   name: "Aaron Mathew",
-  url: "https://aaronmathew.dev", // change to your real domain once you have one
+  url: "", // your site's full address, e.g. "https://your-name.vercel.app" (leave "" until you have one)
   location: "New York City",
   email: "aaronmathew5@outlook.com",
   resume: "/Aaron_Mathew_Resume.pdf",

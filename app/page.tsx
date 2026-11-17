@@ -197,9 +197,9 @@ export default function Home() {
           </p>
         </section>
 
-        {/* Tools */}
-        <section className="tools" id="tools" data-node>
-          <h2 data-reveal data-anchor>Tools</h2>
+        {/* Skills */}
+        <section className="tools" id="skills" data-node>
+          <h2 data-reveal data-anchor>Skills</h2>
           <dl className="skills" data-reveal style={{ ["--rd" as string]: "120ms" }}>
             {skills.map((g) => (
               <div key={g.group}>
