@@ -104,20 +104,6 @@ export const projects: Project[] = [
     visual: "none", theme: "paper",
   },
   {
-    slug: "werntz", name: "Mr. Werntz's Website", kind: "Classroom site", date: "", category: "Other", featured: false,
-    summary: "A classroom website that gives students one place for course materials and resources.",
-    highlights: [], stack: ["HTML", "CSS", "JavaScript"],
-    repo: "https://github.com/AaronM524/Mr-Werntz-s-Website", live: "https://aaronm524.github.io/Mr-Werntz-s-Website/",
-    visual: "none", theme: "paper",
-  },
-  {
-    slug: "vue-store", name: "Vue Store", kind: "Storefront", date: "", category: "Other", featured: false,
-    summary: "A mock sock store with color variants and live in-stock and out-of-stock states.",
-    highlights: [], stack: ["Vue", "JavaScript", "HTML", "CSS"],
-    repo: "https://github.com/AaronM524/Vue-Project", live: "https://aaronm524.github.io/Vue-Project/",
-    visual: "none", theme: "paper",
-  },
-  {
     slug: "trunk-or-treat", name: "Halloween Trunk or Treat", kind: "Event site", date: "", category: "Other", featured: false,
     summary: "An event site with interactive, animated elements.",
     highlights: [], stack: ["HTML", "CSS", "JavaScript"],
