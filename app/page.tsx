@@ -226,7 +226,6 @@ export default function Home() {
           </div>
           <footer className="footer">
             <span>{site.name}, {new Date().getFullYear()}</span>
-            <span>Designed and built by me with Next.js</span>
           </footer>
         </section>
         </div>
