@@ -5,8 +5,9 @@ import ProjectVisual from "@/components/ProjectVisual";
 import { ArrowUpRight, CopyIcon, GitHubIcon, LinkedInIcon, MenuIcon } from "@/components/Icons";
 
 const nav = [
-  { id: "work", label: "Work" },
   { id: "about", label: "About" },
+  { id: "work", label: "Work" },
+  { id: "skills", label: "Skills" },
   { id: "contact", label: "Contact" },
 ];
 
